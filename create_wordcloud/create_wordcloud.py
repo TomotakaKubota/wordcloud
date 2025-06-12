@@ -57,19 +57,10 @@ def extract_target_words_by_ginza(input_file):
 
 def make_wordcloud(text, thesis_type):
 
-    #フォントとストップワードの設定
+    #フォントの設定(for mac)
     #フォントは/System/Library/Fonts/に転がってます
     f_path = '/System/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc'
 
-    #一般的に使われていそうな単語は除外
-    #国名も除外
-    stopwords = ['分析', '影響', '着目', '検討', '関連', '効果', '事例', '方法', \
-                '研究', '的', '性', '要因', '者', '感', '実態', \
-                'and', 'the', 'A', 'p', 'in', 'of', 'through', '利用','系', \
-                '高', '間', '後', '別', '小', '中', '高', '化',  'こと', '論', \
-                'at','考察', 'ため', '被', 'づくり', '児', '法', '観', 'つ', \
-                '例', '会', '第', '課題', '分析', '関係', '中国', '日本', '日中', '中国人']
-    custom_stopwords = set(stopwords)   
 
     #ワードクラウドを作成
     #中の詳しい引数は公式ドキュメント参照
@@ -77,7 +68,6 @@ def make_wordcloud(text, thesis_type):
         background_color = 'white',
         width = 1920, height=1080,
         font_path = f_path,
-        stopwords = custom_stopwords,
     ).generate(text)
 
     #作成したワードクラウドをpng形式で保存
