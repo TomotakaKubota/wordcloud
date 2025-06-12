@@ -61,7 +61,6 @@ def make_wordcloud(text, parser):
     #フォントは/System/Library/Fonts/に転がってます
     f_path = '/System/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc'
 
-
     #ワードクラウドを作成
     #中の詳しい引数は公式ドキュメント参照
     wordcloud = WordCloud(
@@ -70,8 +69,7 @@ def make_wordcloud(text, parser):
         font_path = f_path,
     ).generate(text)
 
-    #作成したワードクラウドをpng形式で保存
-    wordcloud.to_file(f'word_cloud_png/word_cloud_{parser}_5y_exclude_PROPN.png')
+    wordcloud.to_file(f'word_cloud_png/word_cloud_{parser}.png')
 
 def main(args):
     input_file_name = args.file_input_path 
@@ -79,7 +77,7 @@ def main(args):
 
     if parser == 'mecab':
         target_words = extract_target_words_by_mecab(input_file_name)
-    elif parser== 'ginza':
+    elif parser == 'ginza':
         target_words = extract_target_words_by_ginza(input_file_name)
     else:
         assert AssertionError, 'plz put second arg; mecab or ginza' 
