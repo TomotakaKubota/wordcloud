@@ -25,7 +25,7 @@ def parse_and_save_by_mecab(target_file, parsed_file):
 def parse_and_save_by_ginza(target_file, parsed_file):
     tagger = spacy.load('ja_ginza')
 
-    with open(target_file, 'r') as f_input, open(parsed_file, 'w') as f_output:
+    with open(target_file, 'r', encoding='utf-8') as f_input, open(parsed_file, 'w') as f_output:
         for line in f_input:
             parsed_result = tagger(line)
             for token in parsed_result:
@@ -33,9 +33,10 @@ def parse_and_save_by_ginza(target_file, parsed_file):
                 f_output.write(result_info)
 
 def main(args):
-    input_file = args.file_input_path
-    file_output_path = os.path.join(args.file_output_path, 'parsed_test.txt')
     parser = args.parser
+    input_file = args.file_input_path
+    file_output_path = os.path.join(args.file_output_path, f'parsed_{parser}_test.txt')
+    
     
     if parser == 'mecab':
         parse_and_save_by_mecab(input_file, file_output_path)

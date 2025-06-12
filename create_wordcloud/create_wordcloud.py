@@ -55,7 +55,7 @@ def extract_target_words_by_ginza(input_file):
     target_words_str = ' '.join(target_words)
     return target_words_str
 
-def make_wordcloud(text, thesis_type):
+def make_wordcloud(text, parser):
 
     #フォントの設定(for mac)
     #フォントは/System/Library/Fonts/に転がってます
@@ -71,7 +71,7 @@ def make_wordcloud(text, thesis_type):
     ).generate(text)
 
     #作成したワードクラウドをpng形式で保存
-    wordcloud.to_file(f'word_cloud_png/word_cloud_{thesis_type}_5y_exclude_PROPN.png')
+    wordcloud.to_file(f'word_cloud_png/word_cloud_{parser}_5y_exclude_PROPN.png')
 
 def main(args):
     input_file_name = args.file_input_path 
@@ -84,7 +84,7 @@ def main(args):
     else:
         assert AssertionError, 'plz put second arg; mecab or ginza' 
 
-    make_wordcloud(target_words, args.thesis_type)
+    make_wordcloud(target_words, parser)
 
 if __name__ == '__main__':
     args = get_args()
